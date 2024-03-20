@@ -8,7 +8,7 @@
 </p>
 <h2>Console</h2>
 <p align="justify">
-    A classe <b>Console</b> oferece métodos para operar em aplicações executadas no console. Por exemplo, um método para limpar.
+    A classe <b>Console</b> oferece métodos para operar em aplicações executadas no console. Por exemplo, um método para limpar a tela do console.
 </p>
 <h2>TextStyle</h2>
 <p align="justify">
