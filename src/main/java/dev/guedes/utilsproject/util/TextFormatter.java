@@ -50,13 +50,51 @@ public class TextFormatter {
     public static final String HIDDEN = "\u001B[8m";
     public static final String STRIKETHROUGH = "\u001B[9m";
 
-    public static String centralize(String s, int width) {
-        String centeredText;
-        int spaceBefore = (width - s.length()) / 2;
-        int spaceAfter = width - (spaceBefore + s.length());
-        centeredText = String.format("%" + (spaceBefore + s.length()) + "s", s);
-        centeredText = String.format("%-" + (centeredText.length() + spaceAfter) + "s", centeredText);
-        return centeredText;
+    /**
+     * Retorna um texto centralizado com base no número de colunas.
+     *
+     * @param text Texto.
+     *
+     * @param columns Número de colunas.
+     *
+     * @return Retorna um texto centralizado com base no número de colunas.
+     */
+    public static String centralizeText(String text, int columns) {
+        String formattedText;
+        int spaceBefore = (columns - text.length()) / 2;
+        int spaceAfter = columns - (spaceBefore + text.length());
+        formattedText = String.format("%" + (spaceBefore + text.length()) + "s", text);
+        formattedText = String.format("%-" + (formattedText.length() + spaceAfter) + "s", formattedText);
+        return formattedText;
+    }
+
+    /**
+     * Quebrar o texto em linhas específicas com base no número de colunas.
+     *
+     * @param text Texto.
+     *
+     * @param columns Número de colunas.
+     *
+     * @return Retorna um array de string. Cada posição do array é uma quebra de linhas.
+     */
+    public static String[] wrapText(String text, int columns) {
+        String[] words = text.split("\\s+");
+        StringBuilder formattedText = new StringBuilder();
+        StringBuilder line = new StringBuilder();
+        for (String word : words) {
+            if (line.length() + word.length() + 1 <= columns) {
+                if (!line.isEmpty()) {
+                    line.append(" ");
+                }
+                line.append(word);
+            } else {
+                formattedText.append(line).append("\n");
+                line = new StringBuilder();
+            }
+        }
+        formattedText.append(line);
+        return formattedText.toString().split("\n");
+
     }
 
 }
