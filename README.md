@@ -10,9 +10,9 @@
 <p align="justify">
     A classe <b>Console</b> oferece métodos para operar em aplicações executadas no console. Por exemplo, um método para limpar a tela do console.
 </p>
-<h2>TextStyle</h2>
+<h2>TextFormatter</h2>
 <p align="justify">
-    A classe <b>TextStyler</b> disponibiliza funcionalidades para formatar textos utilizando códigos ANSI. Isso permite mudar a cor do texto, aplicar negrito, itálico e outras formatações visuais em textos impressos no console.
+    A classe <b>TextFormatter</b> disponibiliza funcionalidades para formatar textos utilizando códigos ANSI. Isso permite mudar a cor do texto, aplicar negrito, itálico e outras formatações visuais em textos impressos no console.
 </p>
 <p align="justify">
     Essas classes utilitárias são projetadas para serem reutilizáveis em diferentes projetos Java, facilitando a implementação de funcionalidades comuns de forma eficiente e organizada.
