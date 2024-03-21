@@ -55,7 +55,7 @@ public class TextFormatter {
         int spaceBefore = (width - s.length()) / 2;
         int spaceAfter = width - (spaceBefore + s.length());
         centeredText = String.format("%" + (spaceBefore + s.length()) + "s", s);
-        centeredText = String.format("%-" + (spaceAfter + centeredText.length()) + "s", centeredText);
+        centeredText = String.format("%-" + (centeredText.length() + spaceAfter) + "s", centeredText);
         return centeredText;
     }
 
