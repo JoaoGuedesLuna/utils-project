@@ -78,23 +78,56 @@ public class TextFormatter {
      * @return Retorna um array de string. Cada posição do array é uma quebra de linhas.
      */
     public static String[] wrapText(String text, int columns) {
-        String[] words = text.split("\\s+");
         StringBuilder formattedText = new StringBuilder();
+        String[] lines;
         StringBuilder line = new StringBuilder();
+        String[] words = text.split("\\s+");
         for (String word : words) {
-            if (line.length() + word.length() + 1 <= columns) {
-                if (!line.isEmpty()) {
+            if (!line.isEmpty()) {
+                if (line.length() + word.length() + 1 <= columns) {
                     line.append(" ");
                 }
-                line.append(word);
-            } else {
-                formattedText.append(line).append("\n");
-                line = new StringBuilder();
+                else{
+                    formattedText.append(line).append("\n");
+                    line = new StringBuilder();
+                }
             }
+            line.append(word);
+            lines = TextFormatter.wrapLine(line.toString(), columns);
+            for (int i = 0; i < lines.length-1; i++) {
+                formattedText.append(lines[i]).append('\n');
+            }
+            line = new StringBuilder();
+            line.append(lines[lines.length-1]);
         }
         formattedText.append(line);
         return formattedText.toString().split("\n");
 
+    }
+
+    /**
+     * Quebrar uma palavra em linhas específicas com base no número de colunas.
+     *
+     * @param line Linha de texto
+     *
+     * @param columns Número de colunas.
+     *
+     * @return Retorna um array de string. Cada posição do array é uma quebra de linhas.
+     */
+    private static String[] wrapLine(String line, int columns) {
+        if (columns <= 0) {
+            throw new IllegalArgumentException("Columns must be greater than zero.");
+        }
+        if (line.length() == columns) {
+            return line.split("\n");
+        }
+        StringBuilder formattedText = new StringBuilder();
+        int endIndex;
+        for (int beginIndex = 0; beginIndex < line.length(); beginIndex += columns) {
+            endIndex = Math.min(line.length(), beginIndex + columns);
+            formattedText.append(line, beginIndex, endIndex).append("\n");
+        }
+        return formattedText.toString().split("\n");
     }
 
 }
