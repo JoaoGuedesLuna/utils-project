@@ -53,9 +53,9 @@ public class TextFormatter {
     public static String centralize(String s, int width) {
         String centeredText;
         int spaceBefore = (width - s.length()) / 2;
-        centeredText = String.format("%" + spaceBefore + "s", s);
-        int spaceAfter = spaceBefore + centeredText.length();
-        centeredText = String.format("%-" + spaceAfter + "s", centeredText);
+        int spaceAfter = width - (spaceBefore + s.length());
+        centeredText = String.format("%" + (spaceBefore + s.length()) + "s", s);
+        centeredText = String.format("%-" + (spaceAfter + centeredText.length()) + "s", centeredText);
         return centeredText;
     }
 
