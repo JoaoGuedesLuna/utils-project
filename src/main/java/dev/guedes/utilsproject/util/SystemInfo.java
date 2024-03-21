@@ -48,6 +48,15 @@ public class SystemInfo {
     }
 
     /**
+     * Retorna a hora atual do sistema em milissegundos.
+     *
+     * @return Retorna a hora atual do sistema em milissegundos.
+     */
+    public static Long getSystemTimeMillis() {
+        return System.currentTimeMillis();
+    }
+
+    /**
      * Retorna a data atual do sistema usando métodos da classe Calendar. Ex: dd/mm/yyyy.
      *
      * @return Retorna a data atual do sistema usando métodos da classe Calendar. Ex: dd/mm/yyyy.
@@ -84,6 +93,5 @@ public class SystemInfo {
         int year = yearMonth.getYear();
         return String.format("%d/%d", month,year);
     }
-
 
 }
