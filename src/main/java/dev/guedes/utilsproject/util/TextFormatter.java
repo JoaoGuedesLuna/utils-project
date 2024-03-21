@@ -1,11 +1,12 @@
 package main.java.dev.guedes.utilsproject.util;
 
 /**
- * Classe utilitária que contém atributos para formatação de strings, como cor, negrito, sublinhado...
+ * Classe utilitária que contém atributos para formatação de strings, como cor, negrito, sublinhado e métodos
+ * para formatação. Por exemplo, centralizar um texto.
  *
  * @author João Guedes
  */
-public class TextStyler {
+public class TextFormatter {
 
     public static final String RESET = "\u001B[0m";
     public static final String BLACK_FOREGROUND = "\u001B[30m";
@@ -48,5 +49,14 @@ public class TextStyler {
     public static final String INVERSE = "\u001B[7m";
     public static final String HIDDEN = "\u001B[8m";
     public static final String STRIKETHROUGH = "\u001B[9m";
+
+    public static String centralize(String s, int width) {
+        String centeredText;
+        int spaceBefore = (width - s.length()) / 2;
+        centeredText = String.format("%" + spaceBefore + "s", s);
+        int spaceAfter = spaceBefore + centeredText.length();
+        centeredText = String.format("%-" + spaceAfter + "s", centeredText);
+        return centeredText;
+    }
 
 }
