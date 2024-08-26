@@ -11,22 +11,30 @@ public class Console {
 
     /**
      * Clears the console screen.
-     *
-     * @throws IOException Throws an exception if an I/O error occurs.
-     *
-     * @throws InterruptedException Throws an exception if the current thread is interrupted by another
-     * thread while waiting.
      */
-    public static void clear() throws IOException, InterruptedException {
-        String osName = System.getProperty("os.name");
-        if (osName.contains("Windows")) {
-            ProcessBuilder processBuilder = new ProcessBuilder("cmd", "/c", "cls");
-            processBuilder.inheritIO().start().waitFor();
+    public static void clear() {
+        try {
+            String osName = System.getProperty("os.name").toLowerCase();
+
+            ProcessBuilder processBuilder;
+
+            if (osName.contains("windows")) {
+                processBuilder = new ProcessBuilder("cmd", "/c", "cls");
+            }
+            else {
+                processBuilder = new ProcessBuilder("clear");
+            }
+
+            Process process = processBuilder.inheritIO().start();
+            process.waitFor();
+
+            Console.cls();
+        } catch (IOException e) {
+            System.err.println("Error trying to clear the console: " + e.getMessage());
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.err.println("Interruption while waiting for the process to complete: " + e.getMessage());
         }
-        else {
-            Runtime.getRuntime().exec("clear");
-        }
-        Console.cls();
     }
 
     /**
